@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.imdevil.mooc">
-
+    <uses-permission android:name="android.permission.INTERNET" /> <!--网络访问-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> <!--获取wifi状态-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!--获取网络状态-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> <!-- 操作SD卡配置 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"

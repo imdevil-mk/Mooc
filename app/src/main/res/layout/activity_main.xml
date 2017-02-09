@@ -23,6 +23,23 @@
             android:textSize="20sp"
             android:id="@+id/main_toolbar_tv"/>
         </android.support.v7.widget.Toolbar>
+       
+        <Button
+            android:text="获取Json"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/getJson"
+            android:layout_weight="1" />
+
+        <Button
+            android:text="解析Json"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/parseJson"
+            android:layout_weight="1" />
+
+
+
         <android.support.design.widget.TabLayout
             android:id="@+id/tab"
             android:layout_width="match_parent"
