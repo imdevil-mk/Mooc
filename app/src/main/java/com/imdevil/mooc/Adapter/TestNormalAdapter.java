@@ -1,9 +1,10 @@
-package com.imdevil.mooc;
+package com.imdevil.mooc.Adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.imdevil.mooc.R;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 /**

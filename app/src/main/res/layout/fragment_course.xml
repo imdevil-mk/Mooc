@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.imdevil.mooc.CourseFragment">
+    tools:context=".ui.CourseFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -23,80 +23,82 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#ffffff"
+            android:background="#e6e6e6"
             android:orientation="horizontal">
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_1"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_2"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_3"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_4"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="70dp"
-            android:background="#ffffff"
+            android:background="#e6e6e6"
             android:orientation="horizontal">
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_5"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_6"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_7"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
-            <com.imdevil.mooc.ImageTextButton
+            <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_8"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
                 android:layout_weight="1">
-            </com.imdevil.mooc.ImageTextButton>
+            </com.imdevil.mooc.control.ImageTextButton>
 
         </LinearLayout>
 
-        <com.imdevil.mooc.CoursePreview
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/course_preview">
-        </com.imdevil.mooc.CoursePreview>
+         <com.imdevil.mooc.control.HotCourse
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/hot_course"
+             android:layout_weight="1">
+         </com.imdevil.mooc.control.HotCourse>
+
      </LinearLayout>
     </ScrollView>
 </LinearLayout>

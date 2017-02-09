@@ -1,4 +1,4 @@
-package com.imdevil.mooc;
+package com.imdevil.mooc.ui;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+
+import com.imdevil.mooc.R;
+import com.imdevil.mooc.Adapter.TabViewPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

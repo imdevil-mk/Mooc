@@ -1,4 +1,4 @@
-package com.imdevil.mooc;
+package com.imdevil.mooc.control;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,6 +7,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.imdevil.mooc.R;
+
 /**
  * Created by imdevil on 2017/2/5 0005.
  */
@@ -14,6 +16,7 @@ public class ImageTextButton extends LinearLayout {
 
     private ImageView imageView;
     private TextView textView;
+    private LinearLayout linearLayout;
 
     public ImageTextButton(Context context){
         super(context,null);
@@ -26,6 +29,8 @@ public class ImageTextButton extends LinearLayout {
 
         this.imageView = (ImageView) findViewById(R.id.button_image);
         this.textView = (TextView) findViewById(R.id.button_text);
+
+
     }
 
     public void setImageRes(int resourceID) {
@@ -35,5 +40,14 @@ public class ImageTextButton extends LinearLayout {
     public void setTextText(String text){
         this.textView.setText(text);
     }
+
+    public TextView getTextView() {
+        return textView;
+    }
+
+    public ImageView getImageView() {
+        return imageView;
+    }
+
 
 }
