@@ -1,9 +1,10 @@
-package com.imdevil.mooc;
+package com.imdevil.mooc.Adapter;
 
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.imdevil.mooc.R;
 import com.jude.rollviewpager.adapter.StaticPagerAdapter;
 
 /**
@@ -13,7 +14,7 @@ public class TestNormalAdapter extends StaticPagerAdapter {
 
     private int[] imgs = {
             R.drawable.img1,
-            R.drawable.img2,
+           R.drawable.img2,
             R.drawable.img3,
             R.drawable.img4,
     };

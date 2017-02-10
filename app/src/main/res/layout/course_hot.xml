@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#e6e6e6"
+    android:weightSum="1">
+
+
+    <TextView
+        android:id="@+id/course_preview_course"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:text="热门课程"
+        android:textColor="#000000"
+        android:textSize="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal">
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_1"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_2"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal">
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_3"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_4"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal">
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_5"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_6"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal">
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_7"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+        <com.imdevil.mooc.control.HotCourseButton
+            android:id="@+id/hot_course_button_8"
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            >
+        </com.imdevil.mooc.control.HotCourseButton>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+</LinearLayout>
