@@ -1,4 +1,3 @@
-//测试合并分支
 package com.imdevil.mooc.ui;
 import android.content.Context;
 import android.net.ConnectivityManager;
