@@ -35,7 +35,7 @@ public class videoPlay  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_main);
-        loadView();
+        loadView();//加载
         addListener();
     }
 
