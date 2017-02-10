@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/button_text"
         android:duplicateParentState="true"
-        android:text="计算机"
+        android:text="计算"
         android:layout_gravity="center"
         android:textColor="#000000"/>
 </LinearLayout>

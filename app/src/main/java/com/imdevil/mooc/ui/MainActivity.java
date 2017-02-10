@@ -67,14 +67,14 @@ public class MainActivity extends AppCompatActivity {
 
         tab.setupWithViewPager(viewPager);
 
-        getJson = (Button) findViewById(R.id.getJson);
-        parseJson = (Button) findViewById(R.id.parseJson);
+        //getJson = (Button) findViewById(R.id.getJson);
+        //parseJson = (Button) findViewById(R.id.parseJson);
 
 
         /**
          *从服务器获取json数据的按键事件
          */
-        getJson.setOnClickListener(new View.OnClickListener() {
+        /*getJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String url = "http://120.27.104.19:3002/Hubu/Interface/Android/course_class_list.php?format=json";
@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "当前网络不可用，无法发送数据请求", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    /**
+                    *//**
                      * 用下面这个方法开启http请求，获取json数据
-                     */
+                     *//*
                     HttpThreadForJson.getJson(url, new HttpThreadForJson.HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
@@ -100,13 +100,13 @@ public class MainActivity extends AppCompatActivity {
                     });
                 }
             }
-        });
+        });*/
 
 
         /**
          *处理Json数据的按键逻辑
          */
-        parseJson.setOnClickListener(new View.OnClickListener() {
+       /* parseJson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String url = "http://120.27.104.19:3002/Hubu/Interface/Android/course_class_list.php?format=json";
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+*/
 
 
 
@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
      *
      *
      */
-    public void parseJson(String jsonData) {
+   /* public void parseJson(String jsonData) {
         Gson gson = new Gson();
         College college = gson.fromJson(jsonData, new TypeToken<College>() {
         }.getType());
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-    }
+    }*/
 
     /**    解析 course json的方法 先注释掉，你需要的时候再安排怎么用
      *
