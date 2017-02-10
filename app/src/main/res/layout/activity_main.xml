@@ -23,7 +23,7 @@
             android:textSize="20sp"
             android:id="@+id/main_toolbar_tv"/>
         </android.support.v7.widget.Toolbar>
-       
+
         <Button
             android:text="获取Json"
             android:layout_width="wrap_content"
