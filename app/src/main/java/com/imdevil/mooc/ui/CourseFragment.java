@@ -2,6 +2,7 @@ package com.imdevil.mooc.ui;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -131,6 +132,15 @@ public class CourseFragment extends Fragment{
             });
         }
 
+        imageTextButton_8.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),CourseActivity.class);
+                startActivity(intent);
+            }
+        });
+
         return view;
     }
+
 }
