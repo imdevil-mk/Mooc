@@ -1,9 +1,8 @@
-package com.xuyike.videoplayer;
+package com.xuyike.videoplayer.video;
 
 /**
  * Created by Numb on 2017/2/9.
  */
-import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;

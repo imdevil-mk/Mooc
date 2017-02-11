@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.jude:rollviewpager:1.2.9'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile files('libs/android-support-v7-appcompat.jar')
 }
