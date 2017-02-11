@@ -1,5 +1,10 @@
 package com.imdevil.mooc.HttpThread;
 
+import android.util.Log;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -15,7 +20,7 @@ import java.net.URL;
  */
 
 public class HttpThreadForJson {
-
+    //以下方法暂时未使用
     //向服务器发送消息的线程，并获取反馈，listener用于接收返回的数据
     // Listener用于防止子线程未返回服务器数据，必须添加
     public static void sendHttpMessage(final String text, final String address, final HttpCallbackListener listener) {
@@ -67,6 +72,69 @@ public class HttpThreadForJson {
 
 
     }
+
+
+    /**
+     * 登录LoginIn
+     */
+    public static void LoginIn(final String name,final String password, final String address, final HttpCallbackListener listener) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                JSONObject info = new JSONObject();
+                JSONObject userinfo = new JSONObject();
+                try {
+                    info.put("name",name);
+                    info.put("password",password);
+                    userinfo.put("info", info);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                HttpURLConnection connection = null;
+                String userinfoString = String.valueOf(userinfo);
+                String content = "info=" + userinfoString;
+                Log.d("userinfo",content);
+                try {
+                    URL url = new URL(address);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setReadTimeout(5000);
+                    OutputStream out = connection.getOutputStream();
+
+
+                    out.write(content.getBytes());
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuffer sb = new StringBuffer();
+                    String str;
+
+                    while ((str = reader.readLine()) != null) {
+                        sb.append(str);
+                    }
+
+                    if (listener != null) {
+
+                        listener.onFinish(sb.toString());
+                    }
+                    out.close();
+                    //  echoFromPHP = sb.toString();
+                    //在logcat输出这个值用以检查验证
+                    //  System.out.println("PHP服务器返回的字符串信息为:" + echoFromPHP);
+                } catch (Exception e) {
+                    if (listener != null) {
+                        listener.onError(e);
+                    }
+                    e.printStackTrace();
+                } finally {
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                }
+            }
+        }).start();
+
+    }
+
+
 
     //HttpCallbackListener用于防止子线程未返回服务器数据
     public interface HttpCallbackListener {
