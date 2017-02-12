@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/college_item_img"
+        android:layout_gravity="center"
         android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_height="50dp"
         android:src="@drawable/img"/>
     <TextView
         android:id="@+id/college_item_text"

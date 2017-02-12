@@ -53,7 +53,7 @@ public class CollegeFragment extends Fragment {
 
             listView = (ListView) rootView.findViewById(R.id.college_listView);
 
-            final int[] drawables = {R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,R.drawable.img,};;
+            final int[] drawables = {R.drawable.btn_1,R.drawable.btn_2,R.drawable.btn_3,R.drawable.btn_4,R.drawable.btn_5,R.drawable.btn_6,R.drawable.btn_7,R.drawable.btn_8,R.drawable.btn_9,R.drawable.btn_10,R.drawable.btn_11,R.drawable.btn_12,R.drawable.btn_13,};;
 
             final Gson gson = new Gson();
             ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -97,7 +97,7 @@ public class CollegeFragment extends Fragment {
                     bundle.putInt("Target",position+1);
                     Fragment fragment = new College_Course_Fragment();
                     fragment.setArguments(bundle);
-                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.college_frameLayout,fragment).commit();
+                    getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.college_frameLayout,fragment).addToBackStack(null).commit();
                 }
             });
             }
