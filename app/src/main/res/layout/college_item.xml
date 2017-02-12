@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="#e6e6e6">
+
+    <ImageView
+        android:id="@+id/college_item_img"
+        android:layout_gravity="center"
+        android:layout_width="80dp"
+        android:layout_height="50dp"
+        android:src="@drawable/img"/>
+    <TextView
+        android:id="@+id/college_item_text"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="30dp"
+        android:textColor="#000000"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="计算机"/>
+
+</LinearLayout>
