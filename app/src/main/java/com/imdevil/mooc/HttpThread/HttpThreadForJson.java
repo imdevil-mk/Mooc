@@ -82,17 +82,17 @@ public class HttpThreadForJson {
             @Override
             public void run() {
                 JSONObject info = new JSONObject();
-                JSONObject userinfo = new JSONObject();
+               // JSONObject userinfo = new JSONObject();
                 try {
-                    info.put("name",name);
+                    info.put("username",name);
                     info.put("password",password);
-                    userinfo.put("info", info);
+                //    userinfo.put("info", info);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 HttpURLConnection connection = null;
-                String userinfoString = String.valueOf(userinfo);
-                String content = "info=" + userinfoString;
+                String userinfoString = String.valueOf(info);
+                String content = "userinfo=" + userinfoString;
                 Log.d("userinfo",content);
                 try {
                     URL url = new URL(address);

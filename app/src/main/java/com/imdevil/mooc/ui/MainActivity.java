@@ -20,6 +20,7 @@ import com.google.gson.reflect.TypeToken;
 import com.imdevil.mooc.HttpThread.HttpThreadForJson;
 import com.imdevil.mooc.Jsonbinder.College;
 import com.imdevil.mooc.Jsonbinder.Course;
+import com.imdevil.mooc.Jsonbinder.HotCourse;
 import com.imdevil.mooc.R;
 import com.imdevil.mooc.Adapter.TabViewPagerAdapter;
 
@@ -163,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**     解析college json的方法
+     *          课程大类接口
      */
     public void parseJson(String jsonData) {
         Gson gson = new Gson();
@@ -184,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**    解析 course json的方法 先注释掉，你需要的时候再安排怎么用
-     *
+     *      某一类课程/所有类 下面所有课程名称接口
      *
 
     public void parseJson1(String jsonData) {
@@ -201,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", "college_id：" + data.getCourse_id());
                 Log.d("MainActivity", "Description：" + data.getDescription() );
                 Log.d("MainActivity","Image：" + data.getImage()  );
+                //有些数据暂未打印
             }
         }
 
@@ -208,7 +211,57 @@ public class MainActivity extends AppCompatActivity {
      */
 
 
+    /**     解析hot college json的方法
+     *          热门课程接口
 
+    public void parseJson2(String jsonData) {
+        Gson gson = new Gson();
+        HotCourse hotCourse = gson.fromJson(jsonData, new TypeToken<HotCourse>() {
+        }.getType());
+        List<HotCourse.DataEntity> hotCourseList= hotCourse.getData();
+
+        int code = hotCourse.getCode();
+        if (code == 408){
+            Log.d("MainActivity","code"+code);
+            for (HotCourse.DataEntity data : hotCourseList) {
+                Log.d("MainActivity", "data_name: " + data.getName());
+                Log.d("MainActivity", "course_id：" + data.getCourse_id());
+                Log.d("MainActivity", "image：" + data.getImage() );
+                Log.d("MainActivity","description：" + data.getDescription()  );
+                Log.d("MainActivity","teacher：" + data.getTeacher()  );
+                Log.d("MainActivity","choose_count：" + data.getChoose_count()  );
+                Log.d("MainActivity","class：" + data.getClass()  );
+            }
+        }
+
+    }
+     */
+
+    /**     解析CourseChapter json的方法
+     *          课程章节列表信息的接口
+     */
+
+     public void parseJson3(String jsonData) {
+     Gson gson = new Gson();
+     HotCourse hotCourse = gson.fromJson(jsonData, new TypeToken<HotCourse>() {
+     }.getType());
+     List<HotCourse.DataEntity> hotCourseList= hotCourse.getData();
+
+     int code = hotCourse.getCode();
+     if (code == 411){
+     Log.d("MainActivity","code"+code);
+     for (HotCourse.DataEntity data : hotCourseList) {
+     Log.d("MainActivity", "data_name: " + data.getName());
+     Log.d("MainActivity", "course_id：" + data.getCourse_id());
+     Log.d("MainActivity", "image：" + data.getImage() );
+     Log.d("MainActivity","description：" + data.getDescription()  );
+     Log.d("MainActivity","teacher：" + data.getTeacher()  );
+     Log.d("MainActivity","choose_count：" + data.getChoose_count()  );
+     Log.d("MainActivity","class：" + data.getClass()  );
+     }
+     }
+
+     }
 
 
     @Override
