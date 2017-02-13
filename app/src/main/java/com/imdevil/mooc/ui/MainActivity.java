@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.imdevil.mooc.HttpThread.DownloadSTH;
 import com.imdevil.mooc.HttpThread.HttpThreadForJson;
 import com.imdevil.mooc.Jsonbinder.College;
 import com.imdevil.mooc.Jsonbinder.Course;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
