@@ -33,6 +33,8 @@
         <activity android:name=".ui.CourseActivity" />
         <activity
             android:name=".ui.LoginActivity" />
+        <activity android:name="com.xuyike.videoplayer.video.videoPlay"/>
+        <activity android:name="com.xuyike.videoplayer.Ui.VideoTreeView"/>
     </application>
 
 </manifest>
