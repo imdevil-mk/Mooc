@@ -1,14 +1,5 @@
 <resources>
-
-    <!--应用程序名称  -->
-    <string name="hello">使用VideoView控件实现的视频播放Demo</string>
     <string name="app_name">Mooc</string>
-    <!--button空间名称  -->
-    <string name="btn_load">加载</string>
-    <string name="btn_play">播放</string>
-    <string name="btn_pause">暂停</string>
-    <string name="action_settings">Settings</string>
-
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
