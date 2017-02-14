@@ -36,6 +36,7 @@ public class SimpleTreeListViewAdapter<T> extends TreeListViewAdapter<T>
 			holder.mText = (TextView) convertView
 					.findViewById(R.id.id_item_text);
 			convertView.setTag(holder);
+
 		} else
 		{
 			holder = (ViewHolder) convertView.getTag();
