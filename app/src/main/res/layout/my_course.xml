@@ -2,11 +2,15 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e6e6e6">
+    android:background="#ffffff">
     <ImageView
-        android:id="@+id/college_course_item_img"
+        android:id="@+id/my_course_img"
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:scaleType="fitXY"
@@ -18,7 +22,7 @@
         android:layout_height="80dp"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/college_course_item_name"
+            android:id="@+id/my_course_name"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:textColor="#000000"
@@ -30,7 +34,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/college_course_item_choose"
+                android:id="@+id/my_course_choose"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
@@ -38,7 +42,7 @@
                 android:paddingLeft="10dp"
                 android:text="######"/>
             <TextView
-                android:id="@+id/college_course_item_class"
+                android:id="@+id/my_course_process"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"

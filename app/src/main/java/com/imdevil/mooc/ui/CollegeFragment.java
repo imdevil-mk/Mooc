@@ -93,7 +93,6 @@ public class CollegeFragment extends Fragment {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Bundle bundle = new Bundle();
-                    Log.d("CollegeFragment",""+position);
                     bundle.putInt("Target",position+1);
                     Fragment fragment = new College_Course_Fragment();
                     fragment.setArguments(bundle);

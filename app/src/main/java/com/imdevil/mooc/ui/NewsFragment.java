@@ -31,8 +31,9 @@ public class NewsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         linearLayout = (LinearLayout) view.findViewById(R.id.news_linear_layout);
-     news = new News(getContext(),null);
-      linearLayout.addView(news);
+        news = new News(getContext(),null);
+        news.getNews_text_course_name().setText("Java");
+        linearLayout.addView(news);
 
         return view;
     }

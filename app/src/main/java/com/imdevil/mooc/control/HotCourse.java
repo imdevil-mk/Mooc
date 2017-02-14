@@ -3,8 +3,11 @@ package com.imdevil.mooc.control;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.imdevil.mooc.R;
 
 /**
@@ -72,5 +75,39 @@ public class HotCourse extends LinearLayout{
     public HotCourseButton getHotCourseButton_8() {
         return hotCourseButton_8;
     }
+
+    public void setData(final com.imdevil.mooc.Jsonbinder.HotCourse hots){
+        getHotCourseButton_1().getTextView().setText(hots.getData().get(0).getName());
+        Glide.with(getContext()).load(hots.getData().get(0).getImage()).into(getHotCourseButton_1().getImageView());
+        getHotCourseButton_1().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),hots.getData().get(0).getName(),Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        getHotCourseButton_2().getTextView().setText(hots.getData().get(1).getName());
+        Glide.with(getContext()).load(hots.getData().get(1).getImage()).into(getHotCourseButton_2().getImageView());
+
+        getHotCourseButton_3().getTextView().setText(hots.getData().get(2).getName());
+        Glide.with(getContext()).load(hots.getData().get(2).getImage()).into(getHotCourseButton_3().getImageView());
+
+        getHotCourseButton_4().getTextView().setText(hots.getData().get(3).getName());
+        Glide.with(getContext()).load(hots.getData().get(3).getImage()).into(getHotCourseButton_4().getImageView());
+
+        getHotCourseButton_5().getTextView().setText(hots.getData().get(4).getName());
+        Glide.with(getContext()).load(hots.getData().get(4).getImage()).into(getHotCourseButton_5().getImageView());
+
+        getHotCourseButton_6().getTextView().setText(hots.getData().get(5).getName());
+        Glide.with(getContext()).load(hots.getData().get(5).getImage()).into(getHotCourseButton_6().getImageView());
+
+        getHotCourseButton_7().getTextView().setText(hots.getData().get(6).getName());
+        Glide.with(getContext()).load(hots.getData().get(6).getImage()).into(getHotCourseButton_7().getImageView());
+
+        getHotCourseButton_8().getTextView().setText(hots.getData().get(7).getName());
+        Glide.with(getContext()).load(hots.getData().get(7).getImage()).into(getHotCourseButton_8().getImageView());
+    }
+
+
 
 }
