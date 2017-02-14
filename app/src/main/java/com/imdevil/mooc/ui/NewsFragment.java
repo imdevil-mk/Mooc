@@ -6,8 +6,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.imdevil.mooc.R;
+import com.imdevil.mooc.control.News;
 
 
 /**
@@ -15,6 +17,9 @@ import com.imdevil.mooc.R;
  */
 public class NewsFragment extends Fragment {
 
+
+    private LinearLayout linearLayout;
+   private News news;
 
     public NewsFragment() {
 
@@ -24,6 +29,11 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_news, container, false);
+
+        linearLayout = (LinearLayout) view.findViewById(R.id.news_linear_layout);
+     news = new News(getContext(),null);
+      linearLayout.addView(news);
+
         return view;
     }
 
