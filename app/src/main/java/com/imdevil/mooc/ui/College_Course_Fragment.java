@@ -38,6 +38,7 @@ public class College_Course_Fragment extends Fragment {
     private List<CollegeCourseItem> courses = new ArrayList<>();
     private String base_url = "http://120.27.104.19:3002/Hubu/Interface/Android/course_name_list.php?format=json&course_class_code=";
 
+
     public College_Course_Fragment() {
 
     }
