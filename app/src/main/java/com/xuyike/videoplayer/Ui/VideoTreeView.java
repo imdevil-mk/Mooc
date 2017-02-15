@@ -88,7 +88,7 @@ public class VideoTreeView extends Activity {
                         }
 
                     }
-                   // initEvent();
+
                     try
                     {
                         mAdapter = new SimpleTreeListViewAdapter<FileBean>(mTree,VideoTreeView.this,
