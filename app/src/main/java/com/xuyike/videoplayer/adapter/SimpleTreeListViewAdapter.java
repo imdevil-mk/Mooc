@@ -72,7 +72,7 @@ public class SimpleTreeListViewAdapter<T> extends TreeListViewAdapter<T>
 		Node node = mVisibleNodes.get(position);
 		int indexOf = mAllNodes.indexOf(node);
 		// Node
-		Node extraNode = new Node(-1, node.getId(), string);
+		Node extraNode = new Node(-1, node.getId(), string,node.getMId());
 		extraNode.setParent(node);
 		node.getChildren().add(extraNode);
 		mAllNodes.add(indexOf + 1, extraNode);

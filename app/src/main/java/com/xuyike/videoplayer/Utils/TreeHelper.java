@@ -28,6 +28,7 @@ public class TreeHelper
 		{
 			int id = -1;
 			int pid = -1;
+			int mid=-1;
 			String label = null;
 
 			node = new Node();
@@ -50,8 +51,13 @@ public class TreeHelper
 					field.setAccessible(true);
 					label = (String) field.get(t);
 				}
+				if (field.getAnnotation(TreeNodemId.class) != null)
+				{
+					field.setAccessible(true);
+					mid = field.getInt(t);
+				}
 			}
-			node = new Node(id, pid, label);
+			node = new Node(id, pid, label,mid);
 			nodes.add(node);
 		}// for end
 		

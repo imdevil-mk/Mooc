@@ -9,11 +9,12 @@ public class Node
 	{
 	}
 
-	public Node(int id, int pId, String name)
+	public Node(int id, int pId, String name,int mid)
 	{
 		this.id = id;
 		this.pId = pId;
 		this.name = name;
+		this.mid=mid;
 	}
 
 
@@ -23,7 +24,10 @@ public class Node
 	 * 跟节点的pid=0
 	 */
 	private int pId = 0;
+
+	private int mid=0;
 	private String name;
+
 	/**
 	 * 树的层级
 	 */
@@ -45,6 +49,15 @@ public class Node
 	public void setId(int id)
 	{
 		this.id = id;
+	}
+	public int getMId()
+	{
+		return mid;
+	}
+
+	public void setMId(int id)
+	{
+		this.mid = id;
 	}
 
 	public int getpId()

@@ -3,11 +3,14 @@ package com.xuyike.videoplayer.video;
 /**
  * Created by Numb on 2017/2/9.
  */
+import android.app.Activity;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,8 +20,9 @@ import android.widget.VideoView;
 
 import com.imdevil.mooc.R;
 
-public class videoPlay  extends AppCompatActivity {
+public class videoPlay  extends Activity {
 
+    private String video_url;
     private Button btn_load;
     private Button btn_play;
     private Button btn_pause;
@@ -34,6 +38,13 @@ public class videoPlay  extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_main);
+
+        /**
+         * 获取视频地址
+         */
+        Intent intent = getIntent();
+        video_url = intent.getStringExtra("Video_url");
+        Log.d("url",video_url);
         loadView();//加载
         addListener();
     }
@@ -54,7 +65,7 @@ public class videoPlay  extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                Uri uri = Uri.parse("http://192.168.0.105:8080/test/6.mp4");
+                Uri uri = Uri.parse(video_url);
                 vv_player.setVideoURI(uri);
 
 
