@@ -2,6 +2,7 @@ package com.imdevil.mooc.ui;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.imdevil.mooc.JavaBean.ListViewCollege;
 import com.imdevil.mooc.Jsonbinder.College;
 import com.imdevil.mooc.Jsonbinder.Course;
 import com.imdevil.mooc.R;
+import com.xuyike.videoplayer.Ui.VideoTreeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,7 @@ public class College_Course_Fragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (rootView != null)
         {
@@ -93,6 +95,9 @@ public class College_Course_Fragment extends Fragment {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                             Toast.makeText(getContext(),courseList.get(position).getCourse_id(),Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getActivity(), VideoTreeView.class);
+                                            intent.putExtra("Course_ID",courseList.get(position).getCourse_id());
+                                            startActivity(intent);
                                         }
                                     });
                                 }

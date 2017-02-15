@@ -4,14 +4,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/my_fragment_ll"
     tools:context=".ui.MyFragment"
     android:background="#ffffff">
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/my_fragment_ll">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ll_btn"
+                android:text="登录"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ll_btn"
-        android:text="登录"/>
 
 </LinearLayout>

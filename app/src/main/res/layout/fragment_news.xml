@@ -5,12 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.NewsFragment"
-    android:background="#e6e6e6"
-    android:id="@+id/news_linear_layout">
+    android:background="#e6e6e6">
 
-    <TextView
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="20dp" />
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/news_linear_layout">
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
 
 
 </LinearLayout>
