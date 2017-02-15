@@ -67,31 +67,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
 
         tab.setupWithViewPager(viewPager);
-
-        /**
-         * 登录按键的事件 暂时未用到
-         * @param jsonData
-
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String url = "http://192.168.31.140:3002/Hubu/Interface/testAPI_1.php";
-                HttpThreadForJson.LoginIn(editText.getText().toString(), password.getText().toString(), url, new HttpThreadForJson.HttpCallbackListener() {
-                    @Override
-                    public void onFinish(String response) {
-                        Log.d("返回的数据", response);
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
-                });
-            }
-        });
-         */
-
-
     }
 
 

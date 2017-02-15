@@ -1,6 +1,7 @@
 package com.imdevil.mooc.control;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.imdevil.mooc.R;
+import com.xuyike.videoplayer.Ui.VideoTreeView;
 
 /**
  * Created by imdevil on 2017/2/5 0005.
@@ -82,30 +84,88 @@ public class HotCourse extends LinearLayout{
         getHotCourseButton_1().setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),hots.getData().get(0).getName(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(0).getCourse_id());
+                getContext().startActivity(intent);
             }
         });
 
         getHotCourseButton_2().getTextView().setText(hots.getData().get(1).getName());
         Glide.with(getContext()).load(hots.getData().get(1).getImage()).into(getHotCourseButton_2().getImageView());
+        getHotCourseButton_2().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(1).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_3().getTextView().setText(hots.getData().get(2).getName());
         Glide.with(getContext()).load(hots.getData().get(2).getImage()).into(getHotCourseButton_3().getImageView());
+        getHotCourseButton_3().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(2).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_4().getTextView().setText(hots.getData().get(3).getName());
         Glide.with(getContext()).load(hots.getData().get(3).getImage()).into(getHotCourseButton_4().getImageView());
+        getHotCourseButton_4().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(3).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_5().getTextView().setText(hots.getData().get(4).getName());
         Glide.with(getContext()).load(hots.getData().get(4).getImage()).into(getHotCourseButton_5().getImageView());
+        getHotCourseButton_5().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(4).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_6().getTextView().setText(hots.getData().get(5).getName());
         Glide.with(getContext()).load(hots.getData().get(5).getImage()).into(getHotCourseButton_6().getImageView());
+        getHotCourseButton_6().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(5).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_7().getTextView().setText(hots.getData().get(6).getName());
         Glide.with(getContext()).load(hots.getData().get(6).getImage()).into(getHotCourseButton_7().getImageView());
+        getHotCourseButton_7().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(6).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
 
         getHotCourseButton_8().getTextView().setText(hots.getData().get(7).getName());
         Glide.with(getContext()).load(hots.getData().get(7).getImage()).into(getHotCourseButton_8().getImageView());
+        getHotCourseButton_8().setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VideoTreeView.class);
+                intent.putExtra("Course_ID",hots.getData().get(8).getCourse_id());
+                getContext().startActivity(intent);
+            }
+        });
     }
 
 

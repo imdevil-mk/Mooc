@@ -35,6 +35,9 @@ public class NewsFragment extends Fragment {
         news.getNews_text_course_name().setText("Java");
         linearLayout.addView(news);
 
+        News AAA = new News(getContext(),null);
+        linearLayout.addView(AAA);
+
         return view;
     }
 
