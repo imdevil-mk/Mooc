@@ -22,15 +22,12 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.imdevil.mooc.HttpThread.HttpThreadForJson;
-import com.imdevil.mooc.Jsonbinder.College;
-import com.imdevil.mooc.Jsonbinder.Course;
 import com.imdevil.mooc.Jsonbinder.Login_Course;
 import com.imdevil.mooc.Jsonbinder.My;
 import com.imdevil.mooc.R;
 import com.imdevil.mooc.control.My_Course;
 import com.imdevil.mooc.control.Self;
 
-import java.util.List;
 
 
 /**
@@ -67,8 +64,8 @@ public class MyFragment extends Fragment {
         }else {
             regist();
             if(pref.getBoolean("Login",false)){
-                linearLayout.removeAllViews();
-                getMy(pref.getString("ID",""),pref.getString("PassWord",""));
+                linearLayout.removeAllViews();  //*如果登录成功，去掉登录按钮
+                getMy(pref.getString("ID",""),pref.getString("PassWord","")); //网络访问得到登录后的数据，通过handler发送回来
                 handler = new Handler(){
                     public void handleMessage(Message msg){
                         switch (msg.what){
@@ -78,7 +75,7 @@ public class MyFragment extends Fragment {
                                 self.setData(my);
                                 linearLayout.addView(self);
                                 for (int i=0;i<my.getData().getMycourse().size();i++){
-                                    getMyCourse(my.getData().getMycourse().get(i));
+                                    getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
                                 }
                         }
                     }
@@ -92,8 +89,8 @@ public class MyFragment extends Fragment {
         return  rootView;
     }
 
-    private void getMyCourse(String ID) {
-        String url = "http://120.27.104.19:3002/Hubu/Interface/Android/course_introduce.php?format=json&course_id="+ID;
+    private void getMyCourse(String Course_ID,String Student_ID) {
+        String url = "http://120.27.104.19:3002/Hubu/Interface/Android/course_introduce.php?format=json&course_id="+Course_ID+"&student_id="+Student_ID;
         final Handler course_handler = new Handler(){
             public void handleMessage(Message msg){
                 switch (msg.what){
@@ -114,7 +111,7 @@ public class MyFragment extends Fragment {
                     final Login_Course course = gson.fromJson(response, new TypeToken<Login_Course>() {
                     }.getType());
                     int code = course.getCode();
-                    if (code == 423) {
+                    if (code == 424) {
                         Message message = new Message();
                         message.obj = course;
                         message.what = OK_COURSE;

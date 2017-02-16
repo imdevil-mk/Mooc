@@ -82,7 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                 psw = password.getText().toString();
                 isRem = check.isChecked();
                 editor = pref.edit();
-                if (isRem){
+                if (true){
                     editor.putBoolean("remember_psw",isRem);
                     editor.putString("ID",id);
                     editor.putString("PassWord",psw);

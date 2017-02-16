@@ -3,18 +3,18 @@ package com.imdevil.mooc.Jsonbinder;
 import java.util.List;
 
 /**
- * Created by imdevil on 2017/2/15 0015.
+ * Created by imdevil on 2017/2/16 0016.
  */
 public class My {
     /**
      * code : 418
-     * data : {"mycourse":["2","17","4","1"],"userinfo":{"addr":"湖大二期-D-426","email":"1784225410@qq.com","intro":"这是我的个人介绍！！！5","pic":"http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg","qq":"1784225410","sex":"1","tel":"17671846116","username":"1784225410@qq.com","verify":"1"}}
      * message : 登陆成功，学生用户个人信息以及已选课程的ID信息获取成功
+     * data : {"userinfo":{"student_id":"9","email":"1784225410@qq.com","username":"1784225410@qq.com","sex":"1","tel":"17671846116","qq":"1784225410","addr":"湖大二期-D-426","pic":"http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg","intro":"这是我的个人介绍！！！5","verify":"1"},"mycourse":["2","17","4","1","18"]}
      */
 
     private int code;
-    private DataBean data;
     private String message;
+    private DataBean data;
 
     public int getCode() {
         return code;
@@ -22,14 +22,6 @@ public class My {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
     }
 
     public String getMessage() {
@@ -40,10 +32,18 @@ public class My {
         this.message = message;
     }
 
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
     public static class DataBean {
         /**
-         * mycourse : ["2","17","4","1"]
-         * userinfo : {"addr":"湖大二期-D-426","email":"1784225410@qq.com","intro":"这是我的个人介绍！！！5","pic":"http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg","qq":"1784225410","sex":"1","tel":"17671846116","username":"1784225410@qq.com","verify":"1"}
+         * userinfo : {"student_id":"9","email":"1784225410@qq.com","username":"1784225410@qq.com","sex":"1","tel":"17671846116","qq":"1784225410","addr":"湖大二期-D-426","pic":"http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg","intro":"这是我的个人介绍！！！5","verify":"1"}
+         * mycourse : ["2","17","4","1","18"]
          */
 
         private UserinfoBean userinfo;
@@ -67,33 +67,35 @@ public class My {
 
         public static class UserinfoBean {
             /**
-             * addr : 湖大二期-D-426
+             * student_id : 9
              * email : 1784225410@qq.com
-             * intro : 这是我的个人介绍！！！5
-             * pic : http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg
-             * qq : 1784225410
+             * username : 1784225410@qq.com
              * sex : 1
              * tel : 17671846116
-             * username : 1784225410@qq.com
+             * qq : 1784225410
+             * addr : 湖大二期-D-426
+             * pic : http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg
+             * intro : 这是我的个人介绍！！！5
              * verify : 1
              */
 
-            private String addr;
+            private String student_id;
             private String email;
-            private String intro;
-            private String pic;
-            private String qq;
+            private String username;
             private String sex;
             private String tel;
-            private String username;
+            private String qq;
+            private String addr;
+            private String pic;
+            private String intro;
             private String verify;
 
-            public String getAddr() {
-                return addr;
+            public String getStudent_id() {
+                return student_id;
             }
 
-            public void setAddr(String addr) {
-                this.addr = addr;
+            public void setStudent_id(String student_id) {
+                this.student_id = student_id;
             }
 
             public String getEmail() {
@@ -104,28 +106,12 @@ public class My {
                 this.email = email;
             }
 
-            public String getIntro() {
-                return intro;
+            public String getUsername() {
+                return username;
             }
 
-            public void setIntro(String intro) {
-                this.intro = intro;
-            }
-
-            public String getPic() {
-                return pic;
-            }
-
-            public void setPic(String pic) {
-                this.pic = pic;
-            }
-
-            public String getQq() {
-                return qq;
-            }
-
-            public void setQq(String qq) {
-                this.qq = qq;
+            public void setUsername(String username) {
+                this.username = username;
             }
 
             public String getSex() {
@@ -144,12 +130,36 @@ public class My {
                 this.tel = tel;
             }
 
-            public String getUsername() {
-                return username;
+            public String getQq() {
+                return qq;
             }
 
-            public void setUsername(String username) {
-                this.username = username;
+            public void setQq(String qq) {
+                this.qq = qq;
+            }
+
+            public String getAddr() {
+                return addr;
+            }
+
+            public void setAddr(String addr) {
+                this.addr = addr;
+            }
+
+            public String getPic() {
+                return pic;
+            }
+
+            public void setPic(String pic) {
+                this.pic = pic;
+            }
+
+            public String getIntro() {
+                return intro;
+            }
+
+            public void setIntro(String intro) {
+                this.intro = intro;
             }
 
             public String getVerify() {

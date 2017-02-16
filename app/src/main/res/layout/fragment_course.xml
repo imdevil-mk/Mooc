@@ -28,7 +28,9 @@
 
             <com.imdevil.mooc.control.ImageTextButton
                 android:id="@+id/image_text_button_1"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_width="0dp"
                 android:layout_weight="1">
             </com.imdevil.mooc.control.ImageTextButton>
@@ -37,7 +39,8 @@
                 android:id="@+id/image_text_button_2"
                 android:layout_height="70dp"
                 android:layout_width="0dp"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:layout_gravity="center">
             </com.imdevil.mooc.control.ImageTextButton>
 
             <com.imdevil.mooc.control.ImageTextButton

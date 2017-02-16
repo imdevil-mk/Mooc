@@ -2,24 +2,24 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:layout_height="100dp"
+    android:background="#e6e6e6">
     <ImageView
         android:id="@+id/my_course_img"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="130dp"
+        android:layout_height="100dp"
         android:scaleType="fitXY"
         android:src="@drawable/img"
         />
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="1"
-        android:layout_height="80dp"
+        android:layout_height="100dp"
         android:orientation="vertical">
         <TextView
             android:id="@+id/my_course_name"
@@ -31,26 +31,38 @@
             android:text="#############"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/my_course_choose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:textColor="#000000"
-                android:paddingLeft="10dp"
-                android:text="######"/>
-            <TextView
-                android:id="@+id/my_course_process"
+            android:layout_height="40dp"
+            android:orientation="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:gravity="right"
-                android:paddingRight="20dp"
-                android:textColor="#000000"
-                android:paddingLeft="10dp"
-                android:text="22222"/>
+                android:layout_height="35dp"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/my_course_teacher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:text="######"/>
+                <TextView
+                    android:id="@+id/my_course_choose"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="right"
+                    android:paddingRight="20dp"
+                    android:textColor="#000000"
+                    android:paddingLeft="10dp"
+                    android:text="22222"/>
+            </LinearLayout>
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:max="100"
+                android:id="@+id/my_course_progress"
+                android:visibility="visible"
+                style="@android:style/Widget.ProgressBar.Horizontal"/>
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
