@@ -77,6 +77,14 @@
             android:layout_width="wrap_content"
             android:layout_span="2"
             android:text="登陆"/>
+        <Button
+            android:id="@+id/login_login_out"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_span="2"
+            android:text="退出登录"/>
+
     </LinearLayout>
 
 </LinearLayout>

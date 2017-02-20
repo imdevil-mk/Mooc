@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private CheckBox check;
     private Button btn;
+    private Button login_out;
     private String id;
     private String psw;
     private boolean isRem;
@@ -45,6 +46,8 @@ public class LoginActivity extends AppCompatActivity {
                         editor.putBoolean("Login",true);
                         editor.commit();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        //intent.putExtra("USER_ID",id);
+                        //intent.putExtra("PASSWORD",psw);
                         startActivity(intent);
                         finish();
                     }else{
@@ -59,10 +62,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-
         regist();
-
         boolean isRemember = pref.getBoolean("remember_psw",false);
         if (isRemember){
             String id = pref.getString("ID","");
@@ -71,10 +71,6 @@ public class LoginActivity extends AppCompatActivity {
             password.setText(psw);
             check.setChecked(true);
         }
-
-
-
-
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,28 +78,45 @@ public class LoginActivity extends AppCompatActivity {
                 psw = password.getText().toString();
                 isRem = check.isChecked();
                 editor = pref.edit();
-                if (true){
-                    editor.putBoolean("remember_psw",isRem);
-                    editor.putString("ID",id);
-                    editor.putString("PassWord",psw);
+                if(id.isEmpty()||id == null||psw.isEmpty()||psw == null){
+                    Toast.makeText(getBaseContext(),"账户名或者密码错误，请重新登录！",Toast.LENGTH_SHORT).show();
                 }else {
-                    editor.clear();
+                    if (true){
+                        editor.putBoolean("remember_psw",isRem);
+                        editor.putString("ID",id);
+                        editor.putString("PassWord",psw);
+                    }else {
+                        editor.clear();
+                    }
+                    editor.commit();
+                    HttpThreadForJson.LoginIn(id, psw, url, new HttpThreadForJson.HttpCallbackListener() {
+                        @Override
+                        public void onFinish(String response) {
+                            Message message = new Message();
+                            message.obj = response;
+                            message.what = OK;
+                            handler.sendMessage(message);
+                        }
+
+                        @Override
+                        public void onError(Exception e) {
+
+                        }
+                    });
                 }
+            }
+        });
+        login_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor = pref.edit();
+                editor.clear();
                 editor.commit();
-                HttpThreadForJson.LoginIn(id, psw, url, new HttpThreadForJson.HttpCallbackListener() {
-                    @Override
-                    public void onFinish(String response) {
-                        Message message = new Message();
-                        message.obj = response;
-                        message.what = OK;
-                        handler.sendMessage(message);
-                    }
-
-                    @Override
-                    public void onError(Exception e) {
-
-                    }
-                });
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                //intent.putExtra("USER_ID",id);
+                //intent.putExtra("PASSWORD",psw);
+                startActivity(intent);
+                finish();
             }
         });
     }
@@ -113,6 +126,7 @@ public class LoginActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.login_psw);
         check = (CheckBox) findViewById(R.id.login_remember);
         btn = (Button) findViewById(R.id.login_login);
+        login_out = (Button) findViewById(R.id.login_login_out);
         pref = PreferenceManager.getDefaultSharedPreferences(this);
     }
 }

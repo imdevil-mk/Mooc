@@ -63,6 +63,7 @@ public class MyFragment extends Fragment {
             }
         }else {
             regist();
+            Log.d("TAG_Login",pref.getBoolean("Login",false)+"");
             if(pref.getBoolean("Login",false)){
                 linearLayout.removeAllViews();  //*如果登录成功，去掉登录按钮
                 getMy(pref.getString("ID",""),pref.getString("PassWord","")); //网络访问得到登录后的数据，通过handler发送回来

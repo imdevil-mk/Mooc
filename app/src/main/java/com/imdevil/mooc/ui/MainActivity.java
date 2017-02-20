@@ -1,5 +1,6 @@
 package com.imdevil.mooc.ui;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Message;
@@ -53,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         theme.add("课程");
         theme.add("消息");
         theme.add("我的");
+
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("USER_ID");
+        String psw = intent.getStringExtra("PASSWORD");
+
+
 
         list.add(new CourseFragment());
         list.add(new NewsFragment());
