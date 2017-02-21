@@ -12,10 +12,9 @@
         android:src="@mipmap/ic_launcher"
         android:gravity="center"/>
     <TextView
-        android:layout_width="40dp"
+        android:layout_width="80dp"
         android:layout_height="20dp"
         android:id="@+id/button_text"
-        android:text="计算"
         android:gravity="center"
         android:textColor="#000000"/>
 </LinearLayout>

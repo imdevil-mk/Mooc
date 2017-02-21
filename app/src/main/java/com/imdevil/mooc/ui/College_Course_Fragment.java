@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -61,7 +62,6 @@ public class College_Course_Fragment extends Fragment {
             listView = (ListView) rootView.findViewById(R.id.college_course_listView);
             int target = getArguments().getInt("Target");
             String url = base_url+target;
-            Log.d("<<<<<<",url);
             final Gson gson = new Gson();
             ConnectivityManager connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
@@ -74,16 +74,12 @@ public class College_Course_Fragment extends Fragment {
                         final Course course = gson.fromJson(response, new TypeToken<Course>() {
                         }.getType());
                         final List<Course.DataEntity> courseList= course.getData();
-                        Log.d("<<<<<<<<<<<<<<<",courseList.get(0).getName());
                         int code = course.getCode();
                         if (code == 405){
-                            Log.d("<<<code<<<<<<<<",""+code);
                             CollegeCourseItem item;
                             for (int i=0;i<courseList.size();i++){
                                 item = new CollegeCourseItem(courseList.get(i).getImage(),courseList.get(i).getName(),courseList.get(i).getChoose_count());
                                 courses.add(item);
-                                Log.d("<<<<<item<<<<",item.getName());
-                                Log.d("<<<<<<<<courses<<<<<",courses.get(0).getName());
                             }
 
                             final College_Course_Adapter adapter = new College_Course_Adapter(getContext(),R.layout.college_course_item,courses);
@@ -94,8 +90,6 @@ public class College_Course_Fragment extends Fragment {
                                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                         @Override
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                                            Toast.makeText(getContext(),courseList.get(position).getCourse_id(),Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getActivity(), VideoTreeView.class);
                                             intent.putExtra("Course_ID",courseList.get(position).getCourse_id());
                                             startActivity(intent);

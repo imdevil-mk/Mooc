@@ -1,8 +1,10 @@
 package com.imdevil.mooc.ui;
 
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -45,6 +47,8 @@ public class MyFragment extends Fragment {
     private NetworkInfo networkInfo;
     private  final static int OK = 0;
     private final static int OK_COURSE = 0;
+    private IntentFilter intentFilter;
+    private LoginBroadcastReceiver loginBroadcastReceiver;
     private Handler handler;
     public MyFragment() {
 
@@ -62,31 +66,17 @@ public class MyFragment extends Fragment {
                 parent.removeView(rootView);
             }
         }else {
-            regist();
-            Log.d("TAG_Login",pref.getBoolean("Login",false)+"");
-            if(pref.getBoolean("Login",false)){
-                linearLayout.removeAllViews();  //*如果登录成功，去掉登录按钮
-                getMy(pref.getString("ID",""),pref.getString("PassWord","")); //网络访问得到登录后的数据，通过handler发送回来
-                handler = new Handler(){
-                    public void handleMessage(Message msg){
-                        switch (msg.what){
-                            case OK:
-                                My my = (My) msg.obj;
-                                Self self = new Self(getContext(),null);
-                                self.setData(my);
-                                linearLayout.addView(self);
-                                for (int i=0;i<my.getData().getMycourse().size();i++){
-                                    getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
-                                }
-                        }
-                    }
-                };
-            }
-            else{
+            register();
+            if(pref.getBoolean("remember_psw",false)){
+                addMy(pref.getString("ID",""),pref.getString("PassWord",""));
+            }else{
                 addLogin();
+                intentFilter = new IntentFilter();
+                intentFilter.addAction("com.imdevil.mooc.LOGIN");
+                loginBroadcastReceiver = new LoginBroadcastReceiver();
+                getActivity().registerReceiver(loginBroadcastReceiver,intentFilter);
             }
         }
-
         return  rootView;
     }
 
@@ -142,7 +132,7 @@ public class MyFragment extends Fragment {
         networkInfo = connectivityManager.getActiveNetworkInfo();
     }
 
-    private void regist() {
+    private void register() {
         rootView = LayoutInflater.from(getContext()).inflate(R.layout.fragment_my,null);
         linearLayout = (LinearLayout) rootView.findViewById(R.id.my_fragment_ll);
         pref = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -166,4 +156,33 @@ public class MyFragment extends Fragment {
         });
     }
 
+
+    class LoginBroadcastReceiver extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String id = intent.getStringExtra("ID");
+            String psw = intent.getStringExtra("PASSWORD");
+            addMy(id,psw);
+        }
+    }
+
+    private void addMy(String id,String psw){
+        linearLayout.removeAllViews();  //*如果登录成功，去掉登录按钮
+        getMy(id,psw); //网络访问得到登录后的数据，通过handler发送回来
+        handler = new Handler(){
+            public void handleMessage(Message msg){
+                switch (msg.what){
+                    case OK:
+                        My my = (My) msg.obj;
+                        Self self = new Self(getContext(),null);
+                        self.setData(my);
+                        linearLayout.addView(self);
+                        for (int i=0;i<my.getData().getMycourse().size();i++){
+                            getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
+                        }
+                }
+            }
+        };
+    }
 }

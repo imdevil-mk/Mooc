@@ -7,15 +7,6 @@
     android:background="#e6e6e6"
     tools:context="com.imdevil.mooc.ui.College_Course_Fragment">
 
-    <TextView
-        android:id="@+id/college_course_name"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="#####"/>
-
     <ListView
         android:id="@+id/college_course_listView"
         android:layout_width="match_parent"

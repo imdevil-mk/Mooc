@@ -34,36 +34,13 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     String url = "http://120.27.104.19:3002/Hubu/Interface/Android/student_login.php?format=json";
-    private static final int OK = 1;
-
-    private Handler handler = new Handler(){
-        public void handleMessage(Message msg) {
-            switch (msg.what){
-                case OK:
-                    My my = gson.fromJson((String)msg.obj,My.class);
-                    if(my.getCode() == 418){
-                        editor = pref.edit();
-                        editor.putBoolean("Login",true);
-                        editor.commit();
-                        Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                        //intent.putExtra("USER_ID",id);
-                        //intent.putExtra("PASSWORD",psw);
-                        startActivity(intent);
-                        finish();
-                    }else{
-                        Toast.makeText(LoginActivity.this,"账号或密码错误，请重新登录",Toast.LENGTH_SHORT).show();
-                    }
-
-            }
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        regist();
-        boolean isRemember = pref.getBoolean("remember_psw",false);
+        register();
+        final boolean isRemember = pref.getBoolean("remember_psw",false);
         if (isRemember){
             String id = pref.getString("ID","");
             String psw = pref.getString("PassWord","");
@@ -81,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(id.isEmpty()||id == null||psw.isEmpty()||psw == null){
                     Toast.makeText(getBaseContext(),"账户名或者密码错误，请重新登录！",Toast.LENGTH_SHORT).show();
                 }else {
-                    if (true){
+                    if (isRem){
                         editor.putBoolean("remember_psw",isRem);
                         editor.putString("ID",id);
                         editor.putString("PassWord",psw);
@@ -92,12 +69,19 @@ public class LoginActivity extends AppCompatActivity {
                     HttpThreadForJson.LoginIn(id, psw, url, new HttpThreadForJson.HttpCallbackListener() {
                         @Override
                         public void onFinish(String response) {
-                            Message message = new Message();
-                            message.obj = response;
-                            message.what = OK;
-                            handler.sendMessage(message);
-                        }
+                            My my = gson.fromJson(response,My.class);
+                            if (my.getCode() == 418)
+                            {
+                                Intent intent = new Intent("com.imdevil.mooc.LOGIN");
+                                intent.putExtra("ID",id);
+                                intent.putExtra("PASSWORD",psw);
+                                sendBroadcast(intent);
+                                finish();
+                            }else{
+                                Toast.makeText(LoginActivity.this,"账号或密码错误，请重新登录",Toast.LENGTH_SHORT).show();
+                            }
 
+                        }
                         @Override
                         public void onError(Exception e) {
 
@@ -113,15 +97,13 @@ public class LoginActivity extends AppCompatActivity {
                 editor.clear();
                 editor.commit();
                 Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                //intent.putExtra("USER_ID",id);
-                //intent.putExtra("PASSWORD",psw);
                 startActivity(intent);
                 finish();
             }
         });
     }
 
-    private void regist() {
+    private void register() {
         account = (EditText) findViewById(R.id.login_account);
         password = (EditText) findViewById(R.id.login_psw);
         check = (CheckBox) findViewById(R.id.login_remember);

@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/dialog"
-    >
+    android:orientation="vertical">
+
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/my_course"
-                    android:layout_width="0dp"
-                    android:layout_weight="2"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="5dp"
-                    android:textColor="#000000"
-                    android:text="######"/>
-                <TextView
-                    android:id="@+id/my_course_choose"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000000"
-                    android:text="22222"/>
-                <TextView
-                    android:id="@+id/my_course_progress_text"
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="******"
-                    android:textColor="#000000"/>
-            </LinearLayout>
-            <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:max="100"
-                android:id="@+id/my_course_progress"
-                android:visibility="visible"
-                style="@android:style/Widget.ProgressBar.Horizontal"/>
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/my_course"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:paddingLeft="5dp"
+                android:text="######"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/my_course_choose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="22222"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/my_course_progress_text"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="******"
+                android:textColor="#000000" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/my_course_progress"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:max="100"
+            android:visibility="visible" />
     </LinearLayout>
 </LinearLayout>

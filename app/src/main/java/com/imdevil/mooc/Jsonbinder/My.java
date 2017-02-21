@@ -1,17 +1,18 @@
 package com.imdevil.mooc.Jsonbinder;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by imdevil on 2017/2/16 0016.
  */
-public class My {
+public class My implements Serializable {
     /**
      * code : 418
      * message : 登陆成功，学生用户个人信息以及已选课程的ID信息获取成功
      * data : {"userinfo":{"student_id":"9","email":"1784225410@qq.com","username":"1784225410@qq.com","sex":"1","tel":"17671846116","qq":"1784225410","addr":"湖大二期-D-426","pic":"http://120.27.104.19:3002/Hubu/Public/Uploads/2017-01-26/5889ed2127cb3.jpg","intro":"这是我的个人介绍！！！5","verify":"1"},"mycourse":["2","17","4","1","18"]}
      */
-
+    private static final long serialVersionUID = -7060210544600464481L;
     private int code;
     private String message;
     private DataBean data;

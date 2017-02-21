@@ -34,6 +34,7 @@ import com.imdevil.mooc.Jsonbinder.My;
 import com.imdevil.mooc.R;
 import com.imdevil.mooc.Adapter.TabViewPagerAdapter;
 import com.imdevil.mooc.control.Dialog;
+import com.imdevil.mooc.control.DialogContainer;
 import com.imdevil.mooc.control.My_Course;
 import com.imdevil.mooc.control.Self;
 
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Fragment> list = new ArrayList<>();
     private List<String> theme = new ArrayList<>();
     private NetworkInfo networkInfo;
+    private LinearLayout dialogContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +61,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tab = (TabLayout) findViewById(R.id.tab);
-        viewPager = (ViewPager) findViewById(R.id.vp);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        register();
 
         setSupportActionBar(toolbar);
         toolbar.setLogo(R.drawable.logo);
@@ -69,12 +70,6 @@ public class MainActivity extends AppCompatActivity {
         theme.add("课程");
         theme.add("消息");
         theme.add("我的");
-
-        Intent intent = getIntent();
-        String id = intent.getStringExtra("USER_ID");
-        String psw = intent.getStringExtra("PASSWORD");
-
-
 
         list.add(new CourseFragment());
         list.add(new NewsFragment());
@@ -91,13 +86,17 @@ public class MainActivity extends AppCompatActivity {
         tab.setupWithViewPager(viewPager);
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
-        getMy(pref.getString("ID",""),pref.getString("PassWord",""));
+        if(pref.getBoolean("remember_psw",false)){
+            getMy(pref.getString("ID",""),pref.getString("PassWord",""));
+        }
+    }
 
-//        Dialog dialog = new Dialog(MainActivity.this,null);
-//
-//
-//
-//        new AlertDialog.Builder(this).setTitle("自定义布局").setView(dialog).setPositiveButton("确定",null).setNegativeButton("取消",null).show();
+    private void register() {
+        tab = (TabLayout) findViewById(R.id.tab);
+        viewPager = (ViewPager) findViewById(R.id.vp);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        dialogContainer = new LinearLayout(MainActivity.this);
+        dialogContainer.setOrientation(LinearLayout.VERTICAL);
     }
 
     @Override
@@ -105,6 +104,8 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.toolbar_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+
     private void getMy(String id,String psw) {
        final Handler handler = new Handler(){
             public void handleMessage(Message msg){
@@ -114,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
                         Self self = new Self(MainActivity.this,null);
                         self.setData(my);
                         for (int i=0;i<my.getData().getMycourse().size();i++){
-                           //Log.d("循环",my.getData().getMycourse().get(i));
                              getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
                         }
-
+                        new AlertDialog.Builder(MainActivity.this).setTitle("我的课程").setView(dialogContainer).
+                                setPositiveButton("确定",null).setNegativeButton("取消",null).show();
                 }
             }
         };
@@ -146,8 +147,7 @@ public class MainActivity extends AppCompatActivity {
                     case 1:
                         Dialog dialog = new Dialog(MainActivity.this,null);
                         dialog.setData((Login_Course)msg.obj);
-
-                        new AlertDialog.Builder(MainActivity.this).setTitle("自定义布局").setView(dialog).setPositiveButton("确定",null).setNegativeButton("取消",null).show();
+                        dialogContainer.addView(dialog);
                 }
             }
         };
