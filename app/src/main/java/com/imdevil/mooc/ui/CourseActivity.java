@@ -4,16 +4,24 @@ import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import com.imdevil.mooc.R;
 
 public class CourseActivity extends FragmentActivity {
 
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_course);
+
+        toolbar = (Toolbar) findViewById(R.id.course_activity_toolbar);
+        toolbar.setLogo(R.drawable.logo);
+
+
         Intent intent = getIntent();
         int  college_id = intent.getIntExtra("college_id",404);
         if(college_id == 404){

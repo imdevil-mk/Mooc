@@ -162,7 +162,7 @@ public class HotCourse extends LinearLayout{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), VideoTreeView.class);
-                intent.putExtra("Course_ID",hots.getData().get(8).getCourse_id());
+                intent.putExtra("Course_ID",hots.getData().get(7).getCourse_id());
                 getContext().startActivity(intent);
             }
         });

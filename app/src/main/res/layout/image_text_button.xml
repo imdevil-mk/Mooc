@@ -9,7 +9,6 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/button_image"
-        android:src="@mipmap/ic_launcher"
         android:gravity="center"/>
     <TextView
         android:layout_width="80dp"

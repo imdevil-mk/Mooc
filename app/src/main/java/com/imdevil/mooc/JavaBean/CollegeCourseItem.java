@@ -6,11 +6,13 @@ package com.imdevil.mooc.JavaBean;
 public class CollegeCourseItem {
     private String img_url;
     private String name;
+    private String teacher;
     private int choose;
 
-    public CollegeCourseItem(String img_url,String name,int choose){
+    public CollegeCourseItem(String img_url,String name,String teacher,int choose){
         this.img_url = img_url;
         this.name = name;
+        this.teacher = teacher;
         this.choose = choose;
     }
 
@@ -24,5 +26,9 @@ public class CollegeCourseItem {
 
     public String getName() {
         return name;
+    }
+
+    public String getTeacher() {
+        return teacher;
     }
 }

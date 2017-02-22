@@ -36,6 +36,7 @@ public class College_Course_Adapter extends ArrayAdapter<CollegeCourseItem>{
             viewHolder = new ViewHolder();
             viewHolder.img = (ImageView) view.findViewById(R.id.college_course_item_img);
             viewHolder.name = (TextView) view.findViewById(R.id.college_course_item_name);
+            viewHolder.teacher = (TextView) view.findViewById(R.id.college_course_item_teacher);
             viewHolder.choose = (TextView) view.findViewById(R.id.college_course_item_choose);
             view.setTag(viewHolder);
         }else{
@@ -44,13 +45,15 @@ public class College_Course_Adapter extends ArrayAdapter<CollegeCourseItem>{
         }
         Glide.with(getContext()).load(item.getImg_url()).into(viewHolder.img);
         viewHolder.name.setText(item.getName());
-        viewHolder.choose.setText(""+item.getChoose());
+        viewHolder.teacher.setText(item.getTeacher());
+        viewHolder.choose.setText("已选:"+item.getChoose()+"人");
         return  view;
     }
 
     class ViewHolder{
         ImageView img;
         TextView name;
+        TextView teacher;
         TextView choose;
     }
 }
