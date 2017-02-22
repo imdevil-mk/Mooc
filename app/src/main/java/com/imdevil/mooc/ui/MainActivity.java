@@ -2,6 +2,7 @@ package com.imdevil.mooc.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
@@ -41,6 +42,8 @@ import com.imdevil.mooc.control.Self;
 import java.util.ArrayList;
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 import static android.icu.text.DateTimePatternGenerator.PatternInfo.OK;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /**
+         *初始化极光推送
+         */
+        JPushInterface.setDebugMode(true);
+        JPushInterface.init(this);
 
 
         super.onCreate(savedInstanceState);
