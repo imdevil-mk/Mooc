@@ -180,8 +180,8 @@ public class TreeHelper
 
 	/**
 	 *
-	 *为Node设置图标
 	 *
+	 *为Node设置图标
 	 */
 	private static void setNodeIcon(Node n)
 	{
