@@ -319,7 +319,7 @@ private void setListener(){
             btn_play_pause.setBackgroundResource(R.drawable.btn_play_selector);
 
         }else{
-            //播放
+
             videoView.start();
             //按钮播放设置为暂停
             btn_play_pause.setBackgroundResource(R.drawable.btn_pause_selector);
