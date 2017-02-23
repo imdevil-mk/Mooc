@@ -180,14 +180,14 @@ public class TreeHelper
 
 	/**
 	 * 为Node设置图标
-	 * 
+	 * //添加节点图标
 	 * @param n
 	 */
 	private static void setNodeIcon(Node n)
 	{
 		if (n.getChildren().size() > 0 && n.isExpand())
 		{
-			//添加节点图标
+
 			n.setIcon(R.drawable.tree_ex);
 		} else if (n.getChildren().size() > 0 && !n.isExpand())
 		{
