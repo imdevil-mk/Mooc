@@ -117,7 +117,7 @@ public class TreeHelper
 	 * @param result
 	 * @param node
 	 * @param defaultExpandLevel
-	 * @param i
+	 *
 	 */
 	private static void addNode(List<Node> result, Node node,
 			int defaultExpandLevel, int currentLevel)
@@ -187,6 +187,7 @@ public class TreeHelper
 	{
 		if (n.getChildren().size() > 0 && n.isExpand())
 		{
+			//添加节点图标
 			n.setIcon(R.drawable.tree_ex);
 		} else if (n.getChildren().size() > 0 && !n.isExpand())
 		{
@@ -194,6 +195,9 @@ public class TreeHelper
 		} else if(n.getpId()>0)
 		{
 			n.setIcon(R.drawable.section_image);
+		}
+		else{
+			n.setIcon(-1);
 		}
 	}
 
