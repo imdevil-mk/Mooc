@@ -324,7 +324,7 @@ btn_fullscreen.setOnClickListener(mOnClickListener);
 
             @Override
             public boolean onDoubleTap(MotionEvent e) {
-                //Toast.makeText(getApplicationContext(),"双击",Toast.LENGTH_SHORT).show();
+
                 StartOrPause();
                 return super.onDoubleTap(e);
             }
