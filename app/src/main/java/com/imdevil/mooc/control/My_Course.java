@@ -70,7 +70,7 @@ public class My_Course extends LinearLayout {
         Glide.with(getContext()).load(course.getData().getCourse_introduce().get(0).getCourse_name_pic()).into(getImg());
         getName().setText(course.getData().getCourse_introduce().get(0).getCourse_name_name());
         getTeacher().setText("讲师:"+course.getData().getCourse_introduce().get(0).getCourse_name_adder());
-        getChoose().setText(course.getData().getCourse_introduce().get(0).getCourse_name_class()+"节");
+        getChoose().setText("共"+course.getData().getCourse_introduce().get(0).getCourse_name_class()+"节");
         getProgress_text().setText(course.getData().getCourse_progress()+"%");
         getProgress().setProgress((int) course.getData().getCourse_progress());
     }
