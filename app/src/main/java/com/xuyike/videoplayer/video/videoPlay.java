@@ -331,7 +331,7 @@ btn_fullscreen.setOnClickListener(mOnClickListener);
 
             @Override
             public boolean onSingleTapConfirmed(MotionEvent e) {
-                 // Toast.makeText(getApplicationContext(),"单击",Toast.LENGTH_SHORT).show();
+
                 if(isShowControl){
                    removeDelayedHideControlPlayer();
                     hideControlPlayer();
