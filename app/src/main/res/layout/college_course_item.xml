@@ -10,7 +10,6 @@
         android:layout_width="100dp"
         android:layout_height="80dp"
         android:scaleType="fitXY"
-        android:src="@drawable/img"
         />
     <LinearLayout
         android:layout_width="0dp"
@@ -23,30 +22,27 @@
             android:layout_height="60dp"
             android:textColor="#000000"
             android:paddingLeft="10dp"
-            android:textSize="23dp"
-            android:text="#############"/>
+            android:textSize="23dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/college_course_item_choose"
+                android:id="@+id/college_course_item_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:textColor="#000000"
-                android:paddingLeft="10dp"
-                android:text="######"/>
+                android:paddingLeft="10dp" />
             <TextView
-                android:id="@+id/college_course_item_class"
+                android:id="@+id/college_course_item_choose"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="0dp"
                 android:gravity="right"
                 android:paddingRight="20dp"
                 android:textColor="#000000"
-                android:paddingLeft="10dp"
-                android:text="22222"/>
+                android:paddingLeft="10dp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

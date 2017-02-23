@@ -78,7 +78,7 @@ public class College_Course_Fragment extends Fragment {
                         if (code == 405){
                             CollegeCourseItem item;
                             for (int i=0;i<courseList.size();i++){
-                                item = new CollegeCourseItem(courseList.get(i).getImage(),courseList.get(i).getName(),courseList.get(i).getChoose_count());
+                                item = new CollegeCourseItem(courseList.get(i).getImage(),courseList.get(i).getName(),courseList.get(i).getTeacher(),courseList.get(i).getChoose_count());
                                 courses.add(item);
                             }
 
