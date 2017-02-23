@@ -92,6 +92,8 @@ public class College_Course_Fragment extends Fragment {
                                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                             Intent intent = new Intent(getActivity(), VideoTreeView.class);
                                             intent.putExtra("Course_ID",courseList.get(position).getCourse_id());
+                                            intent.putExtra("Course_Image",courseList.get(position).getImage());
+
                                             startActivity(intent);
                                         }
                                     });

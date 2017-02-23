@@ -23,9 +23,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.imdevil.mooc.HttpThread.HttpThreadForJson;
@@ -49,7 +51,7 @@ public class VideoTreeView extends Activity {
     private SimpleTreeListViewAdapter<FileBean> mAdapter;
     private List<FileBean> mDatas;
 
-
+    private ImageView title_image;
     private Gson gson = new Gson();
     private ConnectivityManager connectivityManager;
     private NetworkInfo networkInfo;
@@ -98,13 +100,15 @@ public class VideoTreeView extends Activity {
                     {
                         e.printStackTrace();
                     }
-
+/*
+为每个item设置点击监听事件   小节可以点击进入播放界面，章点击只能打开或关闭
+ */
                     mAdapter.setOnTreeNodeClickListener(new TreeListViewAdapter.OnTreeNodeClickListener()
                     {
                         @Override
                         public void onClick(Node node, int position)
                         {
-                            if (node.isLeaf())
+                            if (node.isLeaf()&&node.getpId()!=0)
                             {
                                 int sum=0;
                                 int m=0;
@@ -121,11 +125,16 @@ public class VideoTreeView extends Activity {
                                //video_url1= courseList.get(node.getpId()-1).getSection().get(m).getVideo_url();
                               n=  node.getpId()-1;
                                Log.d("url",courseList.get(n).getSection().get(m).getVideo_url());
-                                Intent intent = new Intent(VideoTreeView.this, videoPlay.class);
-                                intent.putExtra("Video_url",courseList.get(n).getSection().get(m).getVideo_url());
-                                startActivity(intent);
-                                Toast.makeText(VideoTreeView.this, m+"",
-                                        Toast.LENGTH_SHORT).show();
+                                if(courseList.get(n).getSection().get(m).getVideo_url()!=null){
+                                    Intent intent = new Intent(VideoTreeView.this, videoPlay.class);
+                                    intent.putExtra("Video_url",courseList.get(n).getSection().get(m).getVideo_url());
+                                    startActivity(intent);
+                                }
+                                else{
+                                    Toast.makeText(getApplicationContext(),"暂无视频",Toast.LENGTH_SHORT).show();
+                                }
+
+
                             }
                         }
                     });
@@ -142,14 +151,16 @@ public class VideoTreeView extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.videolist_main);
 
-
+        title_image=(ImageView)findViewById(R.id.title_imiage);
 
         /**
          * 获取课程ID
          */
         Intent intent = getIntent();
         String id = intent.getStringExtra("Course_ID");
+        String image=intent.getStringExtra("Course_Image");
 
+        Glide.with(VideoTreeView.this).load(image).into(title_image);
         url=url+id;
         Log.d("url","<<<<<<<<<<<<<<<<<<<<<<<"+url);
         TestNetWork();

@@ -191,9 +191,9 @@ public class TreeHelper
 		} else if (n.getChildren().size() > 0 && !n.isExpand())
 		{
 			n.setIcon(R.drawable.tree_ec);
-		} else
+		} else if(n.getpId()>0)
 		{
-			n.setIcon(-1);
+			n.setIcon(R.drawable.section_image);
 		}
 	}
 
