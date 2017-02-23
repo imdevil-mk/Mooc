@@ -316,7 +316,7 @@ btn_fullscreen.setOnClickListener(mOnClickListener);
         detector=new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public void onLongPress(MotionEvent e) {
-               // Toast.makeText(getApplicationContext(),"长按",Toast.LENGTH_SHORT).show();
+
 
 
                 super.onLongPress(e);
