@@ -56,8 +56,8 @@ public class Dialog extends LinearLayout {
 
     public void setData(Login_Course course){
         getName().setText(course.getData().getCourse_introduce().get(0).getCourse_name_name());
-        getChoose().setText(course.getData().getCourse_introduce().get(0).getCourse_name_class()+"节");
-        getProgress_text().setText(course.getData().getCourse_progress()+"%");
+        getChoose().setText("共"+course.getData().getCourse_introduce().get(0).getCourse_name_class()+"节");
+        getProgress_text().setText("已学"+course.getData().getCourse_progress()+"%");
         getProgress().setProgress((int) course.getData().getCourse_progress());
         if (course.getData().getCourse_progress()>=90){
             getImageView().setImageResource(R.drawable.good);
