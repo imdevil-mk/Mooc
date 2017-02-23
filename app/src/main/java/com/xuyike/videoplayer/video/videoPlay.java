@@ -6,6 +6,9 @@ package com.xuyike.videoplayer.video;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,6 +20,8 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +32,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.imdevil.mooc.R;
+import com.xuyike.videoplayer.Utils.PixeUtil;
 import com.xuyike.videoplayer.Utils.Utils;
 
 import java.util.ArrayList;
@@ -35,25 +41,27 @@ public class videoPlay  extends Activity {
     protected static final int PROGRESS=1;//更新进度
     protected static final int DELAYED_HIDECONTROLPLAYER=2;//隐藏控制面板
 private  Uri uri;
+    private AudioManager mAudioManager;//音频管理器
+    private float mBrightness;
+    private int screen_height,screen_width;
     private String video_url;
-
+private String video_name;
     private TextView tv_video_title;
-    private ImageView iv_battery;
+
     private TextView tv_system_time;
 
     private Button btn_voice;
     private SeekBar seekBar_voice;
-    private Button btn_switch;
+private Button btn_fullscreen;
 
     private TextView tv_current_time;
     private SeekBar seekBar_video;
     private TextView tv_duration;
 
-  //  private Button btn_exit;
-  //  private Button btn_pre;
+
     private  Button btn_play_pause;
-   // private Button btn_next;
-    private  Button btn_screen;
+
+private boolean isFullScreen=false;
 
     private Utils utils;
     private LinearLayout ll_control_player;
@@ -74,6 +82,8 @@ private  Uri uri;
      */
     private boolean isPlaying=false;
 
+private boolean isAdjust=false;
+    private int threshold=54;//控制音量手势误触的值
 
     private Handler handler=new Handler(){
         @Override
@@ -82,14 +92,12 @@ private  Uri uri;
                 case PROGRESS:
                     //得到视频的当前播放进度
                     int currentPosition= videoView.getCurrentPosition();
-                   // tv_current_time.setText(utils.stringForTime(currentPosition));
+                    tv_current_time.setText(utils.stringForTime(currentPosition));
                     //seekBar进度更新
                     seekBar_video.setProgress(currentPosition);
 
-                    //设置电量的显示
-                  //  setBattery();
-                    //设置显示手机当前的时间
-                   // tv_system_time.setText(utils.getSystemTime());
+
+
                     //消息的死循环
                     if(!isDestroyed){
                         handler.sendEmptyMessageDelayed(PROGRESS,1000);
@@ -107,11 +115,12 @@ private  Uri uri;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videoplayer);
+        mAudioManager=(AudioManager)getSystemService(AUDIO_SERVICE);//获取系统的音频服务
 
 
 
-        initData();
         initView();
+        initData();
         getData();
         setData();
         setListener();
@@ -137,6 +146,7 @@ private  Uri uri;
          */
         Intent intent = getIntent();
         video_url = intent.getStringExtra("Video_url");
+        video_name=intent.getStringExtra("video_name");
         Log.d("url",video_url);
         uri = Uri.parse(video_url);
     }
@@ -149,7 +159,7 @@ private  Uri uri;
             //设置播放地址
             videoView.setVideoURI(uri);
             //设置标题
-            tv_video_title.setText(uri.toString());
+            tv_video_title.setText(video_name);
         }
 
     }
@@ -158,30 +168,43 @@ private  Uri uri;
      */
     public void initView(){
 
+        PixeUtil.initContext(this);
         videoView = (VideoView)findViewById(R.id.videoview);
         tv_video_title=(TextView)findViewById(R.id.tv_video_title);
-        tv_system_time=(TextView)findViewById(R.id.tv_system_time);
-        iv_battery=(ImageView) findViewById(R.id.iv_battery);
 
+
+        btn_fullscreen=(Button)findViewById(R.id.btn_fullscreen);
         btn_voice=(Button)findViewById(R.id.btn_voice);
         seekBar_voice=(SeekBar)findViewById(R.id.seekbar_voice);
-        btn_switch=(Button)findViewById(R.id.btn_switch);
+        /**
+         * 设备的最大音量
+         */
+        int streamMaxVolume=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+        /**
+         * 设备当前的音量
+         */
+        int streamVolme=mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        seekBar_voice.setMax(streamMaxVolume);
+        seekBar_voice.setProgress(streamVolme);
 
         tv_current_time=(TextView)findViewById(R.id.tv_current_time);
         seekBar_video=(SeekBar)findViewById(R.id.seekbar_video);
         tv_duration=(TextView)findViewById(R.id.tv_duration);
 
-       // btn_exit=(Button) findViewById(R.id.btn_exit);
-       // btn_pre=(Button) findViewById(R.id.btn_pre);
+
         btn_play_pause=(Button)findViewById(R.id.btn_paly_pause);
-      //  btn_next=(Button) findViewById(R.id.btn_next);
-       // btn_screen=(Button) findViewById(R.id.btn_screen);
+
         ll_control_player=(LinearLayout)findViewById(R.id.ll_control_player);
+//获取屏幕的宽高
+        screen_width=getResources().getDisplayMetrics().widthPixels;
+        screen_height=getResources().getDisplayMetrics().heightPixels;
     }
 
 
 private void setListener(){
-
+    //设置按钮的监听
+    btn_play_pause.setOnClickListener(mOnClickListener);
+btn_fullscreen.setOnClickListener(mOnClickListener);
     seekBar_video.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
         /**
          * 当seekbar状态发生变化的时候回调这个方法
@@ -213,6 +236,31 @@ private void setListener(){
         }
     });
 
+
+    seekBar_voice.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if(fromUser){
+                /**
+                 * 设置当前设备的音量
+                 */
+                mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,progress,0);
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
+    });
+
     //监听视频是否准备要播放了，开始播放
     videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
         @Override
@@ -236,20 +284,41 @@ private void setListener(){
     //添加控制栏
     //videoView.setMediaController(new MediaController(this));
 }
+
+    OnClickListener mOnClickListener=new OnClickListener(){
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.btn_paly_pause:
+                    StartOrPause();
+                    break;
+                case R.id.btn_fullscreen:
+                    if(isFullScreen){
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);//切换为竖屏
+                    }
+                    else{
+                        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);//切换为横屏
+
+                    }
+                    break;
+
+
+            }
+        }
+
+
+    };
     private void initData(){
         utils=new Utils();
         isDestroyed=false;
-//
-//        //监听电量变化
-//        IntentFilter filter=new IntentFilter();
-//        filter.addAction(Intent.ACTION_BATTERY_CHANGED);//电量变化的时候，系统会发这个广播
-//        receiver=new MyBroadcastRecerver();
-//        registerReceiver(receiver,filter);
+
 //2.实例化手势识别器
         detector=new GestureDetector(this, new GestureDetector.SimpleOnGestureListener() {
             @Override
             public void onLongPress(MotionEvent e) {
                // Toast.makeText(getApplicationContext(),"长按",Toast.LENGTH_SHORT).show();
+
+
                 super.onLongPress(e);
             }
 
@@ -277,15 +346,166 @@ private void setListener(){
         });
     }
 
+    /**
+     * 调节声音
+     * @param detlaY
+     */
+//    private void changeVolume(float detlaY){
+//        int max=mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);//最大声音
+//        int current=mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);//当前声音
+//        int index=(int)(detlaY/screen_height*max*3);
+//        int volum=Math.max(current+index,0);
+//        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volum,0);
+//        seekBar_voice.setProgress(volum);
+//
+//    }
+
+    /**
+     * 调节亮度
+     *
+     * @return
+     */
+//    private void changeBrightness(float detlaY){
+//        WindowManager.LayoutParams attributes=getWindow().getAttributes();
+//        mBrightness=attributes.screenBrightness;
+//        float index=detlaY/screen_height/3;
+//        mBrightness+=index;
+//        if(mBrightness>1.0f){
+//            mBrightness=1.0f;
+//        }
+//        if(mBrightness<0.01f){
+//            mBrightness=0.01f;
+//        }
+//        attributes.screenBrightness=mBrightness;
+//        getWindow().setAttributes(attributes);
+//
+//    }
+
+    private float startY;
+    private float audioTouchRang;//屏幕滑动范围
+    private int mVol;
 //使用手势识别器
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         super.onTouchEvent(event);//执行父类的方法
         detector.onTouchEvent(event);
+//        float x=event.getX();
+//        float y=event.getY();
+//        float lastx=0,lasty=0;
+//        switch (event.getAction()){
+//            /**
+//             * 手指落下屏幕的那一刻（只会调用一次）
+//             */
+//            case MotionEvent.ACTION_DOWN:
+//                lastx=x;
+//                lasty=y;
+//                break;
+//            /**
+//             * 手指在屏幕上移动（调用多次）
+//             */
+//            case MotionEvent.ACTION_MOVE:
+//                //手指移动是x和y的偏移量
+//                float deltaX=x-lastx;
+//                float deltaY=y-lasty;
+//                float absdeltaX=Math.abs(deltaX);
+//                float absdeltaY=Math.abs(deltaY);
+//                /**
+//                 * 手势合法验证
+//                 */
+//                if(absdeltaX>threshold&&absdeltaY>threshold){
+//                    if(absdeltaX<absdeltaY){
+//                        isAdjust=true;
+//                    }
+//                    else {
+//                        isAdjust=false;
+//                    }
+//                }
+//                else if(absdeltaX<threshold&&absdeltaY>threshold){
+//                    isAdjust=true;
+//                }
+//                else if(absdeltaX>threshold&&absdeltaY<threshold){
+//                    isAdjust=false;
+//                }
+//                if(isAdjust){
+//                    /**
+//                     * 在判断好当前手势事件已经合法的前提下，去区分此时手势应该调节亮度还是调节声音
+//                     */
+//                    if(x<screen_width/2){
+//                        /**
+//                         * 调节亮度
+//                         */
+//
+//                        changeBrightness(-deltaY);
+//                    }
+//                    else {
+//                        /**
+//                         * 调节声音
+//                         */
+//
+//                        changeVolume(-deltaY);
+//                    }
+//                }
+//                lastx=x;
+//                lasty=y;
+//                break;
+//
+//            /**
+//             * 手指离开屏幕的那一刻（只会调用一次）
+//             */
+//            case MotionEvent.ACTION_UP:
+//                break;
+//            default:
+//                break;
+//        }
+
+        switch (event.getAction()){
+            /**
+             * 手指落下屏幕的那一刻（只会调用一次）
+             */
+            case MotionEvent.ACTION_DOWN:
+                removeDelayedHideControlPlayer();
+              startY=event.getY();
+                audioTouchRang=Math.min(screen_height,screen_width);
+               mVol= mAudioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+
+                break;
+            /**
+             * 手指在屏幕上移动（调用多次）
+             */
+            case MotionEvent.ACTION_MOVE:
+
+                float endY=event.getY();
+                float distanceY=startY-endY;
+
+                float datel=distanceY/audioTouchRang;
+                float volume=distanceY/audioTouchRang*mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+                float volumeS=Math.min(Math.max(volume+mVol,0),mAudioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC));
+
+                if(datel!=0){
+                    updateVolume((int)volumeS);
+                    seekBar_voice.setProgress((int)volumeS);
+                }
+
+                break;
+
+            /**
+             * 手指离开屏幕的那一刻（只会调用一次）
+             */
+            case MotionEvent.ACTION_UP:
+                sendDelayedHideControlPlayer();
+                break;
+            default:
+                break;
+        }
+
         return true;//对时间进行处理了
     }
 
+    protected void updateVolume(int volume){
+        mAudioManager.setStreamVolume(AudioManager.STREAM_MUSIC,volume,0);
+    }
     //发送控制栏延迟消息
     private void sendDelayedHideControlPlayer(){
         handler.sendEmptyMessageDelayed(DELAYED_HIDECONTROLPLAYER,5000);
@@ -306,6 +526,41 @@ private void setListener(){
     private void showControlPlayer(){
         ll_control_player.setVisibility(View.VISIBLE);
         isShowControl=true;
+    }
+
+    private  void setVideoViewScale(int width,int height){
+        ViewGroup.LayoutParams layoutParams=videoView.getLayoutParams();
+        layoutParams.width=width;
+        layoutParams.height=height;
+        videoView.setLayoutParams(layoutParams);
+
+        ViewGroup.LayoutParams layoutParams1=ll_control_player.getLayoutParams();
+        layoutParams1.width=width;
+        layoutParams1.height=height;
+        ll_control_player.setLayoutParams(layoutParams1);
+    }
+/**
+ * 监听屏幕方向的改变
+ */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        /**
+         * 当屏幕方向为横向的时候
+         */
+        if(getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+
+            isFullScreen=true;
+            setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+
+        }
+        /**
+         * 当屏幕方向为纵向的时候
+         */
+        else{
+            isFullScreen=false;
+            setVideoViewScale(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        }
     }
 
     /**

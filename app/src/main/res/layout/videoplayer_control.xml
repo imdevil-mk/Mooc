@@ -4,78 +4,6 @@
 
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <LinearLayout
-            android:background="@drawable/bg_player_status"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_video_title"
-                android:layout_marginLeft="5dip"
-                android:layout_gravity="center_vertical"
-                android:textSize="15sp"
-                android:textColor="#ffffff"
-                android:layout_weight="1"
-                android:text="我是标题"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <ImageView
-                android:id="@+id/iv_battery"
-                android:layout_marginLeft="5dip"
-                android:layout_marginRight="5dip"
-                android:layout_gravity="center_vertical"
-                android:src="@drawable/ic_battery_0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:id="@+id/tv_system_time"
-                android:layout_marginRight="5dip"
-                android:layout_gravity="center_vertical"
-                android:textSize="15sp"
-                android:textColor="#ffffff"
-                android:text="系统时间"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:background="@drawable/bg_player_top_control"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="40dp">
-<Button
-    android:id="@+id/btn_voice"
-    android:layout_gravity="center_vertical"
-    android:background="@drawable/btn_voice_selector"
-    android:layout_width="122dp"
-    android:layout_height="wrap_content" />
-            <SeekBar
-android:id="@+id/seekbar_voice"
-
-                android:maxHeight="6dip"
-                android:minHeight="6dip"
-
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <Button
-                android:id="@+id/btn_switch"
-                android:layout_gravity="center_vertical"
-                android:layout_marginRight="5dip"
-                android:layout_marginLeft="5dip"
-                android:background="@drawable/btn_switch_selector"
-                android:layout_width="103dp"
-                android:layout_height="60dip" />
-        </LinearLayout>
-    </LinearLayout>
-
-
-    <LinearLayout
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -130,12 +58,7 @@ android:id="@+id/seekbar_voice"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <Button
-                android:id="@+id/btn_exit"
-                android:layout_gravity="center_vertical"
-                android:background="@drawable/btn_exit_selector"
-                android:layout_width="70dp"
-                android:layout_height="37dp" />
+
 
             <Button
                 android:id="@+id/btn_paly_pause"
@@ -144,7 +67,70 @@ android:id="@+id/seekbar_voice"
                 android:layout_width="71dp"
                 android:layout_height="40dp" />
 
+
+
         </LinearLayout>
     </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:background="@drawable/bg_player_status"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_video_title"
+                android:layout_marginLeft="5dip"
+                android:layout_gravity="center_vertical"
+                android:textSize="15sp"
+                android:textColor="#ffffff"
+                android:layout_weight="1"
+                android:text="我是标题"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:background="@drawable/bg_player_top_control"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="40dp">
+
+            <Button
+                android:id="@+id/btn_voice"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/btn_voice_selector"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content" />
+
+            <SeekBar
+android:id="@+id/seekbar_voice"
+
+                android:maxHeight="6dip"
+                android:minHeight="6dip"
+
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btn_fullscreen"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/btn_full_screen_normal"
+                android:layout_width="71dp"
+                android:layout_height="40dp" />
+
+
+        </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

@@ -13,7 +13,7 @@
         android:src="@drawable/tree_ec" />
 
     <TextView
-        android:textColor="@color/gray"
+        android:textColor="@color/black"
 
         android:layout_centerVertical="true"
         android:id="@+id/id_item_text"
@@ -21,5 +21,5 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/id_item_icon"
 
-        android:textSize="24dp" />
+        android:textSize="21dp" />
 </RelativeLayout>

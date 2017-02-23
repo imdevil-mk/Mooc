@@ -56,7 +56,10 @@
         <activity android:name=".ui.CourseActivity" />
         <activity
             android:name=".ui.LoginActivity" />
-        <activity android:name="com.xuyike.videoplayer.video.videoPlay"/>
+        <activity android:name="com.xuyike.videoplayer.video.videoPlay"
+                android:configChanges="orientation|screenSize|keyboard|keyboardHidden">
+
+        </activity>
         <activity android:name="com.xuyike.videoplayer.Ui.VideoTreeView"/>
 
 

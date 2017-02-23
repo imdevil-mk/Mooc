@@ -8,7 +8,7 @@
     android:id="@+id/videoview"
     android:layout_centerInParent="true"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+    android:layout_height="240dp" />
     <LinearLayout
         android:id="@+id/ll_control_player"
         android:orientation="vertical"

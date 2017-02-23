@@ -128,6 +128,7 @@ public class VideoTreeView extends Activity {
                                 if(courseList.get(n).getSection().get(m).getVideo_url()!=null){
                                     Intent intent = new Intent(VideoTreeView.this, videoPlay.class);
                                     intent.putExtra("Video_url",courseList.get(n).getSection().get(m).getVideo_url());
+                                    intent.putExtra("video_name",courseList.get(n).getSection().get(m).getName());
                                     startActivity(intent);
                                 }
                                 else{
