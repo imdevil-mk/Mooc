@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                              getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
                         }
                         new AlertDialog.Builder(MainActivity.this).setTitle("我的课程").setView(dialogContainer).
-                                setPositiveButton("确定",null).setNegativeButton("取消",null).show();
+                                setPositiveButton("确定",null).show();
                 }
             }
         };

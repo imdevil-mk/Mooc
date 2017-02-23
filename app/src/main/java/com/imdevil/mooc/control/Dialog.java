@@ -24,6 +24,7 @@ public class Dialog extends LinearLayout {
     private TextView choose;
     private TextView progress_text;
     private ProgressBar progress;
+    private ImageView imageView;
 
     public Dialog(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -32,6 +33,7 @@ public class Dialog extends LinearLayout {
         choose = (TextView) findViewById(R.id.my_course_choose);
         progress_text = (TextView) findViewById(R.id.my_course_progress_text);
         progress = (ProgressBar) findViewById(R.id.my_course_progress);
+        imageView = (ImageView) findViewById(R.id.image);
     }
 
 
@@ -42,7 +44,7 @@ public class Dialog extends LinearLayout {
     public TextView getName() {
         return name;
     }
-
+    public ImageView getImageView(){return imageView;}
 
     public ProgressBar getProgress() {
         return progress;
@@ -57,6 +59,15 @@ public class Dialog extends LinearLayout {
         getChoose().setText(course.getData().getCourse_introduce().get(0).getCourse_name_class()+"节");
         getProgress_text().setText(course.getData().getCourse_progress()+"%");
         getProgress().setProgress((int) course.getData().getCourse_progress());
+        if (course.getData().getCourse_progress()>=90){
+            getImageView().setImageResource(R.drawable.good);
+
+        }else if (course.getData().getCourse_progress()<=10){
+            getImageView().setImageResource(R.drawable.bad);
+        }else{
+            getImageView().setVisibility(getImageView().INVISIBLE);
+        }
+        //getImageView().setImageResource(R.drawable.good);
     }
     public void setName(String name){
         getName().setText(name);
