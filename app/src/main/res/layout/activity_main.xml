@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="湖北大学MOOC"
+            android:text="@string/app_name"
             android:textSize="20sp"
             android:id="@+id/main_toolbar_tv"/>
         </android.support.v7.widget.Toolbar>

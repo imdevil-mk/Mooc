@@ -145,6 +145,14 @@ public class CourseFragment extends Fragment{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CourseActivity.class);
+                intent.putExtra("college_id",5);
+                startActivity(intent);
+            }
+        });
+        imageTextButton_6.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CourseActivity.class);
                 intent.putExtra("college_id",6);
                 startActivity(intent);
             }

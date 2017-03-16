@@ -35,7 +35,6 @@ import com.imdevil.mooc.Jsonbinder.My;
 import com.imdevil.mooc.R;
 import com.imdevil.mooc.Adapter.TabViewPagerAdapter;
 import com.imdevil.mooc.control.Dialog;
-import com.imdevil.mooc.control.DialogContainer;
 import com.imdevil.mooc.control.My_Course;
 import com.imdevil.mooc.control.Self;
 
@@ -126,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                              getMyCourse(my.getData().getMycourse().get(i),my.getData().getUserinfo().getStudent_id());
                         }
                         new AlertDialog.Builder(MainActivity.this).setTitle("我的课程").setView(dialogContainer).
-                                setPositiveButton("确定",null).show();
+                                setPositiveButton("确定",null).setNegativeButton("取消",null).show();
                 }
             }
         };

@@ -2,7 +2,7 @@
 
     <!--应用程序名称  -->
     <string name="hello">使用VideoView控件实现的视频播放Demo</string>
-    <string name="app_name">Mooc</string>
+    <string name="app_name">巨林云学习平台</string>
     <!--button空间名称  -->
     <string name="btn_load">加载</string>
     <string name="btn_play">播放</string>

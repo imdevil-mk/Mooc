@@ -167,7 +167,4 @@ public class HotCourse extends LinearLayout{
             }
         });
     }
-
-
-
 }
